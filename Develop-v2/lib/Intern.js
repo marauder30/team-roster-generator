@@ -22,7 +22,6 @@ class Intern extends Employee {
 module.exports = Intern;
 
 
-
 // The Intern class `extends` from Employee, and should have these additional properties/behaviors:
 
 // school
