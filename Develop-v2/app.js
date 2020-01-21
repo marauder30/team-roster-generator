@@ -20,73 +20,114 @@ const interns = [];
 
 // push object to array for each type, or return for thats all
 
+
 inquirer.prompt([
     {
         type: 'list',
         name: 'Employee Role',
-        message: "What is their role in the company?",
-        choices: ['Engineer', 'Intern', 'Manager', "No more employees"]
+        message: "What is the person's role in the company?",
+        choices: ['Engineer', 'Intern', 'Manager', 'No more employees']
     },
 ]).then(answers => {
-    
 
-    if(answers['Employee Role'] === "No more employees") {
-        return;
-    }
     const role = answers["Employee Role"];
     console.log(role);
-    
-    if (answers['Employee Role'] === 'Engineer') {
-        
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: 'GitHub Username',
-                message: "What is their GitHub username?"
-            }
-        ]).then(answers => {
-            
-            const github = answers["GitHub Username"];
-            console.log(github);
-        })
+
+    switch (role) {
+
+        case 'Engineer':
+            console.log("success!");
+            break;
+        case 'Intern':
+            console.log("oh yeah!");
+            break;
+        case 'Manager':
+            console.log("shabooyakah!!");
+            break;
+        case 'No more employees':
+            console.log("thats all folks!");
+            break;
+        default:
+            console.log("nothing found");
     }
-    if (answers["Employee Role"] === 'Intern') {
+
+
+
+});
+
+
+
+
+
+// inquirer.prompt([
+//     {
+//         type: 'list',
+//         name: 'Employee Role',
+//         message: "What is the person's role in the company?",
+//         choices: ['Engineer', 'Intern', 'Manager', "No more employees"]
+//     },
+// ]).then(answers => {
+    
+
+//     if(answers['Employee Role'] === "No more employees") {
+//         return;
+//     }
+//     const role = answers["Employee Role"];
+//     console.log(role);
+    
+//     if (answers['Employee Role'] === 'Engineer') {
         
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: "School",
-                message: "What school is the internship through?"
-            }
-        ]).then(answers => {
+//         inquirer.prompt([
+//             {
+//                 type: 'input',
+//                 name: 'GitHub Username',
+//                 message: "What is their GitHub username?"
+//             }
+//         ]).then(answers => {
             
-            const school = answers['School'];
-            console.log(school);
-        })
-    }
-    if (answers["Employee Role"] === 'Manager') {
+//             const github = answers["GitHub Username"];
+//             console.log(github);
+//         })
+//     }
+//     if (answers["Employee Role"] === 'Intern') {
         
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: "Office Number",
-                message: "What is the manager's office number?",
-                validate: function(val) {
-                    var valid = !isNaN(parseFloat(val));
-                    return valid || 'Please enter a number';
-                },
-                filter: Number
-            }
-        ]).then(answers => {
+//         inquirer.prompt([
+//             {
+//                 type: 'input',
+//                 name: "School",
+//                 message: "What school is the internship through?"
+//             }
+//         ]).then(answers => {
             
-            const officeNumber = answers["Office Number"];
-            console.log(officeNumber);
-            console.log(role);
-        })
-    }
+//             const school = answers['School'];
+//             console.log(school);
+//         })
+//     }
+//     if (answers["Employee Role"] === 'Manager') {
+        
+//         inquirer.prompt([
+//             {
+//                 type: 'input',
+//                 name: "Office Number",
+//                 message: "What is the manager's office number?",
+//                 validate: function(val) {
+//                     var valid = !isNaN(parseFloat(val));
+//                     return valid || 'Please enter a number';
+//                 },
+//                 filter: Number
+//             }
+//         ]).then(answers => {
+            
+//             const officeNumber = answers["Office Number"];
+//             console.log(officeNumber);
+//             console.log(role);
+//         })
+//     }
     
     
-})
+// })
+
+
 
 // {
 //     type: 'input',
