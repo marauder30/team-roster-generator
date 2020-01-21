@@ -33,67 +33,88 @@ inquirer.prompt([
     const role = answers["Employee Role"];
     console.log(role);
 
-    switch (role) {
-
-        case 'Engineer':
-            console.log("success!");
-            break;
-        case 'Intern':
-            console.log("oh yeah!");
-            break;
-        case 'Manager':
-            console.log("shabooyakah!!");
-            break;
-        case 'No more employees':
-            console.log("thats all folks!");
-            break;
-        default:
-            console.log("nothing found");
+    if (role === 'No more employees') {
+        return;
     }
 
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'Employee Name',
+            message: "What is the employee's name?"
+        },
+        {
+            type: 'input',
+            name: 'Employee ID',
+            message: 'What is the employee ID number?',
+            validate: function(val) {
+                var valid = !isNaN(parseFloat(val));
+                return valid || 'Please enter a number'
+            }
+        }
+    ]).then(answers => {
 
-
-});
-
-
-
-
-
-// inquirer.prompt([
-//     {
-//         type: 'list',
-//         name: 'Employee Role',
-//         message: "What is the person's role in the company?",
-//         choices: ['Engineer', 'Intern', 'Manager', "No more employees"]
-//     },
-// ]).then(answers => {
-    
-
-//     if(answers['Employee Role'] === "No more employees") {
-//         return;
-//     }
-//     const role = answers["Employee Role"];
-//     console.log(role);
-    
-//     if (answers['Employee Role'] === 'Engineer') {
+        const name = answers['Employee Name'];
+        console.log(name);
+        const ID = answers['Employee ID'];
+        console.log(ID);
         
-//         inquirer.prompt([
-//             {
-//                 type: 'input',
+        switch (role) {
+            
+            case 'Engineer':
+
+                inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'GitHub Username',
+                        message: "What is the employee's GitHub username?"
+                    }
+                ]).then(answers => {
+
+                    const github = answers['GitHub Username'];
+                    console.log(github);
+
+                    
+                })
+                
+                break;
+                case 'Intern':
+                    console.log("oh yeah!");
+                    break;
+                    case 'Manager':
+                        console.log("shabooyakah!!");
+                        break;
+                        case 'No more employees':
+                            console.log("thats all folks!");
+                            break;
+                            default:
+                                console.log("nothing found");
+                            }
+                            
+                        })
+                            
+                            
+                        });
+                        
+                        //     if (answers['Employee Role'] === 'Engineer') {
+                            
+                            //         inquirer.prompt([
+                                //             {
+                                    //                 type: 'input',
 //                 name: 'GitHub Username',
 //                 message: "What is their GitHub username?"
 //             }
 //         ]).then(answers => {
-            
-//             const github = answers["GitHub Username"];
-//             console.log(github);
-//         })
-//     }
-//     if (answers["Employee Role"] === 'Intern') {
+    
+    //             const github = answers["GitHub Username"];
+    //             console.log(github);
+    //         })
+    //     }
+    //     if (answers["Employee Role"] === 'Intern') {
         
-//         inquirer.prompt([
-//             {
-//                 type: 'input',
+        //         inquirer.prompt([
+            //             {
+                //                 type: 'input',
 //                 name: "School",
 //                 message: "What school is the internship through?"
 //             }
