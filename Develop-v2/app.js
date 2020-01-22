@@ -104,7 +104,7 @@ const subMenu = () => {
 
         case 'No more employees':
           
-            break;
+            return;
     }
 }
 
@@ -141,10 +141,50 @@ const subMenu2 = () => {
         email = answers['Employee Email'];
         console.log(email);
 
-        menu();
+        subMenu3();
 
     })
     
+}
+
+const subMenu3 = () => {
+
+    switch(role) {
+
+        case 'Engineer':
+
+            const newEngineer = new Engineer(name, id, email, github);
+
+            engineers.push(newEngineer);
+        
+            console.log(engineers);
+        
+            menu();
+            break;
+
+        case 'Intern':
+
+            const newIntern = new Intern(name, id, email, school);
+
+            interns.push(newIntern);
+
+            console.log(interns);
+
+            menu();
+            break;
+
+        case 'Manager':
+
+            const newManager = new Manager(name, id, email, officeNumber);
+
+            managers.push(newManager);
+
+            console.log(managers);
+
+            menu();
+            break;
+
+    }
 }
 
 menu();
