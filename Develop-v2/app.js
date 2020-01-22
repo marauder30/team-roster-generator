@@ -10,6 +10,14 @@ const outputPath = path.resolve(__dirname, "output", "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let role;
+let name;
+let id;
+let github;
+let email;
+let officeNumber;
+let school;
+
 const managers = [];
 const engineers = [];
 const interns = [];
@@ -20,23 +28,90 @@ const interns = [];
 
 // push object to array for each type, or return for thats all
 
+const menu = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'Employee Role',
+            message: "What is the person's role in the company? Select 'No more employees' if there are no more people to add.",
+            choices: ['Engineer', 'Intern', 'Manager', 'No more employees']
+        },
+    ]).then(workers => {
 
-inquirer.prompt([
-    {
-        type: 'list',
-        name: 'Employee Role',
-        message: "What is the person's role in the company?",
-        choices: ['Engineer', 'Intern', 'Manager', 'No more employees']
-    },
-]).then(answers => {
+        console.log(workers);
 
-    const role = answers["Employee Role"];
-    console.log(role);
+        role = workers['Employee Role'];
+        console.log(role);
 
-    if (role === 'No more employees') {
-        return;
+        subMenu();
+    })
+}
+
+const subMenu = () => {
+
+    switch(role) {
+
+        case 'Engineer':
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'GitHub Username',
+                    message: "What is the engineer's GitHub username?"
+                }
+            ]).then(handle => {
+
+                console.log(handle);
+                github = handle["GitHub Username"];
+                console.log(github);
+                subMenu2();
+            })
+
+            break;
+
+        case 'Manager':
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'Office Number',
+                    message: "What is the manager's office number?"
+                }
+            ]).then(office => {
+
+                console.log(office);
+                officeNumber = office["Office Number"];
+                console.log(officeNumber);
+                subMenu2();
+            })
+
+            break;
+
+        case 'Intern':
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: "Sponsoring School",
+                    message: "Which school is the intern attending?"
+                }
+            ]).then(sponsor => {
+
+                console.log(sponsor);
+                school = sponsor["Sponsoring School"];
+                console.log(school);
+                subMenu2();
+            })
+
+            break;
+
+        case 'No more employees':
+          
+            break;
     }
+}
 
+
+
+const subMenu2 = () => {
+    
     inquirer.prompt([
         {
             type: 'input',
@@ -46,55 +121,106 @@ inquirer.prompt([
         {
             type: 'input',
             name: 'Employee ID',
-            message: 'What is the employee ID number?',
+            message: "What is the employee ID number?",
             validate: function(val) {
                 var valid = !isNaN(parseFloat(val));
                 return valid || 'Please enter a number'
             }
-        }
+        },
+        {
+            type: 'email',
+            name: 'Employee Email',
+            message: "What is the employee's email address?"
+        },
     ]).then(answers => {
 
-        const name = answers['Employee Name'];
+        name = answers['Employee Name'];
         console.log(name);
-        const ID = answers['Employee ID'];
-        console.log(ID);
+        id = answers['Employee ID'];
+        console.log(id);
+        email = answers['Employee Email'];
+        console.log(email);
+
+        menu();
+
+    })
+    
+}
+
+menu();
+
+// inquirer.prompt([
+    //     {
+        //         type: 'list',
+        //         name: 'Employee Role',
+        //         message: "What is the person's role in the company?",
+//         choices: ['Engineer', 'Intern', 'Manager', 'No more employees']
+//     },
+// ]).then(answers => {
+
+//     const role = answers["Employee Role"];
+//     console.log(role);
+
+//     if (role === 'No more employees') {
+//         return;
+//     }
+
+//     inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'Employee Name',
+//             message: "What is the employee's name?"
+//         },
+//         {
+//             type: 'input',
+//             name: 'Employee ID',
+//             message: 'What is the employee ID number?',
+//             validate: function(val) {
+//                 var valid = !isNaN(parseFloat(val));
+//                 return valid || 'Please enter a number'
+//             }
+//         }
+//     ]).then(answers => {
+
+//         const name = answers['Employee Name'];
+//         console.log(name);
+//         const ID = answers['Employee ID'];
+//         console.log(ID);
         
-        switch (role) {
+//         switch (role) {
             
-            case 'Engineer':
+//             case 'Engineer':
 
-                inquirer.prompt([
-                    {
-                        type: 'input',
-                        name: 'GitHub Username',
-                        message: "What is the employee's GitHub username?"
-                    }
-                ]).then(answers => {
+//                 inquirer.prompt([
+//                     {
+//                         type: 'input',
+//                         name: 'GitHub Username',
+//                         message: "What is the employee's GitHub username?"
+//                     }
+//                 ]).then(answers => {
 
-                    const github = answers['GitHub Username'];
-                    console.log(github);
-
-                    
-                })
+//                     const github = answers['GitHub Username'];
+//                     console.log(github);
+//                 })
                 
-                break;
-                case 'Intern':
-                    console.log("oh yeah!");
-                    break;
-                    case 'Manager':
-                        console.log("shabooyakah!!");
-                        break;
-                        case 'No more employees':
-                            console.log("thats all folks!");
-                            break;
-                            default:
-                                console.log("nothing found");
-                            }
+//                 break;
+//                 case 'Intern':
+//                     console.log("oh yeah!");
+//                     break;
+//                     case 'Manager':
+//                         console.log("shabooyakah!!");
+//                         break;
+//                         case 'No more employees':
+//                             console.log("thats all folks!");
+//                             break;
+//                             default:
+//                                 console.log("nothing found");
+//                             }
                             
-                        })
+//                         })
                             
                             
-                        });
+//                         });
                         
                         //     if (answers['Employee Role'] === 'Engineer') {
                             
