@@ -178,6 +178,7 @@ const subMenu3 = () => {
 
 
 menu();
+module.exports = employees;
 
 
 // Write code to use inquirer to gather information about the development team members,
