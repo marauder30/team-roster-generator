@@ -18,9 +18,8 @@ let email;
 let officeNumber;
 let school;
 
-const managers = [];
-const engineers = [];
-const interns = [];
+
+const employees = [];
 
 // try a switch case 
 
@@ -103,8 +102,10 @@ const subMenu = () => {
             break;
 
         case 'No more employees':
-          
-            return;
+
+            render(employees)
+            // return;
+            
     }
 }
 
@@ -153,33 +154,21 @@ const subMenu3 = () => {
 
         case 'Engineer':
 
-            const newEngineer = new Engineer(name, id, email, github);
-
-            engineers.push(newEngineer);
-        
-            console.log(engineers);
+            employees.push(new Engineer(name, id, email, github));
         
             menu();
             break;
 
         case 'Intern':
 
-            const newIntern = new Intern(name, id, email, school);
-
-            interns.push(newIntern);
-
-            console.log(interns);
+            employees.push(new Intern(name, id, email, school));
 
             menu();
             break;
 
         case 'Manager':
 
-            const newManager = new Manager(name, id, email, officeNumber);
-
-            managers.push(newManager);
-
-            console.log(managers);
+            employees.push(new Manager(name, id, email, officeNumber));
 
             menu();
             break;
@@ -187,150 +176,8 @@ const subMenu3 = () => {
     }
 }
 
+
 menu();
-
-// inquirer.prompt([
-    //     {
-        //         type: 'list',
-        //         name: 'Employee Role',
-        //         message: "What is the person's role in the company?",
-//         choices: ['Engineer', 'Intern', 'Manager', 'No more employees']
-//     },
-// ]).then(answers => {
-
-//     const role = answers["Employee Role"];
-//     console.log(role);
-
-//     if (role === 'No more employees') {
-//         return;
-//     }
-
-//     inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'Employee Name',
-//             message: "What is the employee's name?"
-//         },
-//         {
-//             type: 'input',
-//             name: 'Employee ID',
-//             message: 'What is the employee ID number?',
-//             validate: function(val) {
-//                 var valid = !isNaN(parseFloat(val));
-//                 return valid || 'Please enter a number'
-//             }
-//         }
-//     ]).then(answers => {
-
-//         const name = answers['Employee Name'];
-//         console.log(name);
-//         const ID = answers['Employee ID'];
-//         console.log(ID);
-        
-//         switch (role) {
-            
-//             case 'Engineer':
-
-//                 inquirer.prompt([
-//                     {
-//                         type: 'input',
-//                         name: 'GitHub Username',
-//                         message: "What is the employee's GitHub username?"
-//                     }
-//                 ]).then(answers => {
-
-//                     const github = answers['GitHub Username'];
-//                     console.log(github);
-//                 })
-                
-//                 break;
-//                 case 'Intern':
-//                     console.log("oh yeah!");
-//                     break;
-//                     case 'Manager':
-//                         console.log("shabooyakah!!");
-//                         break;
-//                         case 'No more employees':
-//                             console.log("thats all folks!");
-//                             break;
-//                             default:
-//                                 console.log("nothing found");
-//                             }
-                            
-//                         })
-                            
-                            
-//                         });
-                        
-                        //     if (answers['Employee Role'] === 'Engineer') {
-                            
-                            //         inquirer.prompt([
-                                //             {
-                                    //                 type: 'input',
-//                 name: 'GitHub Username',
-//                 message: "What is their GitHub username?"
-//             }
-//         ]).then(answers => {
-    
-    //             const github = answers["GitHub Username"];
-    //             console.log(github);
-    //         })
-    //     }
-    //     if (answers["Employee Role"] === 'Intern') {
-        
-        //         inquirer.prompt([
-            //             {
-                //                 type: 'input',
-//                 name: "School",
-//                 message: "What school is the internship through?"
-//             }
-//         ]).then(answers => {
-            
-//             const school = answers['School'];
-//             console.log(school);
-//         })
-//     }
-//     if (answers["Employee Role"] === 'Manager') {
-        
-//         inquirer.prompt([
-//             {
-//                 type: 'input',
-//                 name: "Office Number",
-//                 message: "What is the manager's office number?",
-//                 validate: function(val) {
-//                     var valid = !isNaN(parseFloat(val));
-//                     return valid || 'Please enter a number';
-//                 },
-//                 filter: Number
-//             }
-//         ]).then(answers => {
-            
-//             const officeNumber = answers["Office Number"];
-//             console.log(officeNumber);
-//             console.log(role);
-//         })
-//     }
-    
-    
-// })
-
-
-
-// {
-//     type: 'input',
-//     name: 'Employee Name',
-//     message: "What is the employee's name?",
-// },
-// {
-//     type: 'input',
-//     name: 'Employee ID',
-//     message: "What is their company ID number?",
-//     validate: function(val) {
-//         var valid = !isNaN(parseFloat(val));
-//         return valid || 'Please enter a number';
-//     },
-//     filter: Number
-// }
 
 
 // Write code to use inquirer to gather information about the development team members,

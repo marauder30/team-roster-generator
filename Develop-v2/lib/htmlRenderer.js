@@ -1,8 +1,11 @@
 // Study this file closely; how does it work?
 const path = require("path");
 const fs = require("fs");
+const app = require("../app");
+const employee = require("./Employee");
 
 const templatesDir = path.resolve(__dirname, "../templates");
+
 
 const render = employees => {
   const html = [];
